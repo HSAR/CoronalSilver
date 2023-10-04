@@ -1,0 +1,78 @@
+[
+  {
+    "name": "OS Hermes/Patrol",
+    "intelligence": {
+      "name": "OS Cranium/Light",
+      "sensors": [
+        {
+          "name": "OS 4K Optizoom/FLIR",
+          "mass": 1.0,
+          "powerConsumed": 100.0,
+          "sensorQuality": 3.5
+        }
+      ],
+      "processor": {
+        "name": "SL Tanaka 200/M",
+        "mass": 1.0,
+        "powerConsumed": 400.0,
+        "actionPointsMajor": 1,
+        "actionPointsMinor": 2
+      }
+    },
+    "power": {
+      "name": "AT CellPack/Pro",
+      "type": "Battery",
+      "capacity": 25000.0,
+      "maxOutput": 1000.0,
+      "mass": 500.0
+    },
+    "mobility": {
+      "name": "OS Ambulation/Light",
+      "frame": {
+        "name": "OS Sprinter",
+        "maxMass": 750.0,
+        "maxAcceleration": 50.0,
+        "maxVelocity": 100.0
+      },
+      "actuator": {
+        "name": "OS Atalanta/Super",
+        "powerConsumed": 300.0,
+        "mass": 100.0,
+        "acceleration": 75.0
+      }
+    },
+    "manipulators": [
+      {
+        "name": "SL Elegano/Finesse",
+        "type": "Grabber",
+        "mass": 5.0,
+        "powerConsumed": 10.0,
+        "actionPointsMinor": 1,
+        "weapons": []
+      },
+      {
+        "name": "SL Mount/Light",
+        "type": "Mount",
+        "mass": 0.5,
+        "powerConsumed": 0.5,
+        "weapons": [
+          {
+            "name": "CL 40mm/PDW",
+            "formFactor": "PDW",
+            "effector": {
+              "type": "Kinetic",
+              "mass": 50.0,
+              "caliber": 40.0
+            },
+            "loading": {
+              "type": "Magazine",
+              "mass": 5.0,
+              "capacity": 5,
+              "reloadCost": 1.0
+            }
+          }
+        ]
+      }
+    ]
+  }
+]
