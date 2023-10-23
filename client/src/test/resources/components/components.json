@@ -1,0 +1,106 @@
+[
+  {
+    "type": "StoredMech",
+    "name": "Hermes/Patrol",
+    "manufacturer": "Olympus Systems"
+  },
+  {
+    "type": "StoredChassis",
+    "name": "Hermes Chassis/Core",
+    "manufacturer": "Olympus Systems",
+    "mass": 500.0,
+    "signature": 1.0
+  },
+  {
+    "type": "StoredIntelligence",
+    "name": "Cranium/Light",
+    "manufacturer": "Olympus Systems"
+  },
+  {
+    "type": "StoredSensor",
+    "name": "Tanaka 4K/Scout",
+    "manufacturer": "Spira Labs",
+    "mass": 1.0,
+    "powerConsumed": 100.0,
+    "sensorQuality": 3.5
+  },
+  {
+    "type": "StoredProcessor",
+    "name": "Cannon Lake 200/M",
+    "manufacturer": "Advanced Silicates",
+    "mass": 1.0,
+    "powerConsumed": 400.0,
+    "actionPointsMajor": 1,
+    "actionPointsMinor": 2
+  },
+  {
+    "type": "StoredBattery",
+    "name": "CellPack/Compact",
+    "manufacturer": "Avalanche Technologies",
+    "capacity": 15000.0,
+    "maxOutput": 1000.0,
+    "mass": 150.0,
+    "signature": 0.0
+  },
+  {
+    "type": "StoredMobility",
+    "name": "Hermes Ambulation",
+    "manufacturer": "Olympus Systems"
+  },
+  {
+    "type": "StoredFrame",
+    "name": "Sprinter",
+    "manufacturer": "Olympus Systems",
+    "maxMass": 750.0,
+    "maxAcceleration": 50.0,
+    "maxVelocity": 100.0
+  },
+  {
+    "type": "StoredActuator",
+    "name": "Atalanta/Super",
+    "manufacturer": "Olympus Systems",
+    "powerConsumed": 300.0,
+    "mass": 100.0,
+    "acceleration": 75.0
+  },
+  {
+    "type": "StoredArmPair",
+    "name": "Hermes Manipulators",
+    "manufacturer": "Olympus Systems"
+  },
+  {
+    "type": "StoredGrabber",
+    "name": "Elegano/Finesse",
+    "manufacturer": "Spira Labs",
+    "mass": 5.0,
+    "powerConsumed": 10.0,
+    "actionPointsMinor": 1
+  },
+  {
+    "type": "StoredMount",
+    "name": "Statis/Light",
+    "manufacturer": "Spira Labs",
+    "mass": 0.5,
+    "powerConsumed": 0.5
+  },
+  {
+    "type": "StoredWeapon",
+    "name": "40mm/PDW",
+    "manufacturer": "Cassandra Developments",
+    "formFactor": "PDW",
+    "effector": {
+      "type": "Kinetic",
+      "mass": 50.0,
+      "caliber": 40.0
+    }
+  },
+  {
+    "type": "StoredMagazine",
+    "name": "Mag 40mm/5rd",
+    "manufacturer": "Spira Labs",
+    "caliber": "40mm",
+    "mass": 5.0,
+    "capacity": 5,
+    "reloadCost": 1.0
+  }
+]

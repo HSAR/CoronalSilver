@@ -1,0 +1,71 @@
+{
+  "type": "MechRef",
+  "name": "Hermes/Patrol",
+  "subcomponents": {
+    "chassis": {
+      "type": "ChassisRef",
+      "name": "Hermes Chassis/Core"
+    },
+    "intelligence": {
+      "type": "IntelligenceRef",
+      "name": "Cranium/Light",
+      "subcomponents": {
+        "sensor": {
+          "type": "SensorRef",
+          "name": "Tanaka 4K/Scout"
+        },
+        "processor": {
+          "type": "ProcessorRef",
+          "name": "Cannon Lake 200/M"
+        }
+      }
+    },
+    "power": {
+      "type": "PowerRef",
+      "name": "CellPack/Compact"
+    },
+    "mobility": {
+      "type": "MobilityRef",
+      "name": "Hermes Ambulation",
+      "subcomponents": {
+        "frame": {
+          "type": "FrameRef",
+          "name": "Sprinter"
+        },
+        "actuator": {
+          "type": "ActuatorRef",
+          "name": "Atalanta/Super"
+        }
+      }
+    },
+    "manipulators": {
+      "type": "ManipulatorsRef",
+      "name": "Hermes Manipulators",
+      "subcomponents": {
+        "handL": {
+          "type": "HandRef",
+          "name": "Elegano/Finesse",
+          "subcomponents": {
+            "weapon": null
+          }
+        },
+        "handR": {
+          "type": "HandRef",
+          "name": "Statis/Light",
+          "subcomponents": {
+            "weapon": {
+              "type": "WeaponRef",
+              "name": "40mm/PDW",
+              "subcomponents": {
+                "loading": {
+                  "type": "LoadingRef",
+                  "name": "Mag 40mm/5rd"
+                }
+              }
+            }
+          }
+        }
+      }
+    }
+  }
+}

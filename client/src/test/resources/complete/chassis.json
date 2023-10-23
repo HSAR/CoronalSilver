@@ -1,0 +1,93 @@
+{
+  "OS Hermes": {
+    "name": "OS Hermes/Patrol",
+    "type": "Mech",
+    "chassis": {
+      "name": "Hermes Chassis/Core",
+      "type": "Chassis",
+      "mass": 500.0,
+      "signature": 1.0
+    },
+    "intelligence": {
+      "name": "Cranium/Light",
+      "type": "Intelligence",
+      "sensor": {
+        "name": "SL Tanaka 4K/Scout",
+        "type": "Sensor",
+        "mass": 1.0,
+        "powerConsumed": 100.0,
+        "sensorQuality": 3.5
+      },
+      "processor": {
+        "name": "AS Cannon Lake 200/M",
+        "type": "Processor",
+        "mass": 1.0,
+        "powerConsumed": 400.0,
+        "actionPointsMajor": 1,
+        "actionPointsMinor": 2
+      }
+    },
+    "power": {
+      "name": "AT CellPack/Compact",
+      "type": "Battery",
+      "capacity": 15000.0,
+      "maxOutput": 1000.0,
+      "mass": 150.0,
+      "signature": 0.0
+    },
+    "mobility": {
+      "name": "OS Hermes Ambulation",
+      "type": "Mobility",
+      "frame": {
+        "name": "OS Sprinter",
+        "type": "Frame",
+        "maxMass": 750.0,
+        "maxAcceleration": 50.0,
+        "maxVelocity": 100.0
+      },
+      "actuator": {
+        "name": "OS Atalanta/Super",
+        "type": "Actuator",
+        "powerConsumed": 300.0,
+        "mass": 100.0,
+        "acceleration": 75.0
+      }
+    },
+    "manipulators": {
+      "name": "Hermes Manipulators",
+      "type": "ArmPair",
+      "handL": {
+        "name": "SL Elegano/Finesse",
+        "type": "Grabber",
+        "mass": 5.0,
+        "powerConsumed": 10.0,
+        "actionPointsMinor": 1,
+        "weapons": []
+      },
+      "handR": {
+        "name": "SL Statis/Light",
+        "type": "Mount",
+        "mass": 0.5,
+        "powerConsumed": 0.5,
+        "weapon": {
+          "name": "CD 40mm/PDW",
+          "type": "Weapon",
+          "formFactor": "PDW",
+          "effector": {
+            "type": "Kinetic",
+            "mass": 50.0,
+            "caliber": "40mm"
+          },
+          "loading": {
+            "name": "Mag 40mm/5rd",
+            "type": "Magazine",
+            "caliber": "40mm",
+            "mass": 5.0,
+            "capacity": 5,
+            "reloadCost": 1.0
+          }
+        }
+      }
+    }
+  }
+}

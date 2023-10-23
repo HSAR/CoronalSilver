@@ -6,6 +6,7 @@ interface Named {
 
 interface Provider {
     val provided: Map<Resource, Double>
+        get() = emptyMap()
 }
 
 interface CompositeProvider : Provider {
@@ -17,6 +18,7 @@ interface CompositeProvider : Provider {
 
 interface Consumer {
     val consumed: Map<Resource, Double>
+        get() = emptyMap()
 }
 
 interface CompositeConsumer : Consumer {
@@ -27,5 +29,5 @@ interface CompositeConsumer : Consumer {
 }
 
 enum class Resource {
-    POWER, MOVEMENT, ACTION_MAJOR, ACTION_MINOR, SIGNATURE, AMMO, MASS, SENSOR, WEAPON_SOCKET
+    POWER, MOVEMENT, ACTION_MAJOR, ACTION_MINOR, SIGNATURE, AMMO, MASS, SENSOR
 }

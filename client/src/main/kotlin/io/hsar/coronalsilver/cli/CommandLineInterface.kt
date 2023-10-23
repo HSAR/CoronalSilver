@@ -8,7 +8,7 @@ import com.fasterxml.jackson.databind.DeserializationFeature
 import com.fasterxml.jackson.databind.SerializationFeature
 import com.fasterxml.jackson.module.kotlin.jacksonObjectMapper
 import com.fasterxml.jackson.module.kotlin.readValue
-import io.hsar.coronalsilver.data.Chassis
+import io.hsar.coronalsilver.data.Mech
 import java.io.File
 import kotlin.system.exitProcess
 
@@ -27,7 +27,7 @@ class CommandLineInterface : Command("validate") {
     private lateinit var chassisFilePaths: List<File>
 
     override fun run() {
-        val chassisFiles = chassisFilePaths.flatMap { filePath ->
+        val mechFiles = chassisFilePaths.flatMap { filePath ->
             if (filePath.isDirectory) {
                 (filePath.listFiles() ?: throw IllegalStateException("Failed to retrieve files in directory: $filePath"))
                     .toList()
@@ -36,12 +36,13 @@ class CommandLineInterface : Command("validate") {
             }
         }
             .map { filePath ->
-                OBJECT_MAPPER.readValue<List<Chassis>>(filePath.readText())
+                OBJECT_MAPPER.readValue<List<Mech>>(filePath.readText())
             }
     }
 }
 
 val OBJECT_MAPPER = jacksonObjectMapper()
+    .configure(DeserializationFeature.FAIL_ON_UNKNOWN_PROPERTIES, false)
     .enable(DeserializationFeature.ACCEPT_SINGLE_VALUE_AS_ARRAY)
     .enable(JsonParser.Feature.ALLOW_COMMENTS)
     .enable(SerializationFeature.INDENT_OUTPUT)!!

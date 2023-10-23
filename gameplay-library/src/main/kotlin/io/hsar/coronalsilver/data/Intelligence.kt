@@ -3,20 +3,25 @@ package io.hsar.coronalsilver.data
 import io.hsar.coronalsilver.CompositeConsumer
 import io.hsar.coronalsilver.CompositeProvider
 import io.hsar.coronalsilver.Consumer
-import io.hsar.coronalsilver.Named
 import io.hsar.coronalsilver.Provider
 import io.hsar.coronalsilver.Resource
 
 data class Intelligence(
-    override val name: String, val sensors: List<Sensor>, val processor: Processor
-) : Named, CompositeConsumer, CompositeProvider {
-    override val consumers: List<Consumer> = sensors + processor
-    override val providers: List<Provider> = sensors + processor
+    override val name: String,
+    override val manufacturer: String? = null,
+    override val desc: String? = null,
+    val sensor: Sensor, val processor: Processor
+) : Component, CompositeConsumer, CompositeProvider {
+    override val consumers: List<Consumer> = listOf(sensor, processor)
+    override val providers: List<Provider> = listOf(sensor, processor)
 }
 
 data class Sensor(
-    override val name: String, val mass: Double, val powerConsumed: Double, val sensorQuality: Double
-) : Named, Consumer, Provider {
+    override val name: String,
+    override val manufacturer: String? = null,
+    override val desc: String? = null,
+    val mass: Double, val powerConsumed: Double, val sensorQuality: Double
+) : Component {
     override val consumed = mapOf(
         Resource.POWER to powerConsumed,
         Resource.MASS to mass,
@@ -28,8 +33,11 @@ data class Sensor(
 }
 
 data class Processor(
-    override val name: String, val mass: Double, val powerConsumed: Double, val actionPointsMajor: Int, val actionPointsMinor: Int
-) : Named, Consumer, Provider {
+    override val name: String,
+    override val manufacturer: String? = null,
+    override val desc: String? = null,
+    val mass: Double, val powerConsumed: Double, val actionPointsMajor: Int, val actionPointsMinor: Int
+) : Component {
     override val consumed = mapOf(
         Resource.POWER to powerConsumed,
         Resource.MASS to mass,
