@@ -1,13 +1,13 @@
 package io.hsar.coronalsilver.storage
 
 import io.hsar.coronalsilver.Resource
-import io.hsar.coronalsilver.data.Chassis
-import io.hsar.coronalsilver.data.Component
-import io.hsar.coronalsilver.data.Intelligence
-import io.hsar.coronalsilver.data.Manipulators
-import io.hsar.coronalsilver.data.Mech
-import io.hsar.coronalsilver.data.Mobility
-import io.hsar.coronalsilver.data.Power
+import io.hsar.coronalsilver.data.mech.Chassis
+import io.hsar.coronalsilver.data.mech.Component
+import io.hsar.coronalsilver.data.mech.Intelligence
+import io.hsar.coronalsilver.data.mech.Manipulators
+import io.hsar.coronalsilver.data.mech.Mech
+import io.hsar.coronalsilver.data.mech.Mobility
+import io.hsar.coronalsilver.data.mech.Power
 
 data class StoredMech(
     override val name: String,

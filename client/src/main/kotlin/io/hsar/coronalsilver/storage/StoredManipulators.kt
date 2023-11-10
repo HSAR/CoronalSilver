@@ -1,12 +1,12 @@
 package io.hsar.coronalsilver.storage
 
-import io.hsar.coronalsilver.data.ArmPair
-import io.hsar.coronalsilver.data.Component
-import io.hsar.coronalsilver.data.Grabber
-import io.hsar.coronalsilver.data.Hand
-import io.hsar.coronalsilver.data.Manipulators
-import io.hsar.coronalsilver.data.Mount
-import io.hsar.coronalsilver.data.Weapon
+import io.hsar.coronalsilver.data.mech.ArmPair
+import io.hsar.coronalsilver.data.mech.Component
+import io.hsar.coronalsilver.data.mech.Grabber
+import io.hsar.coronalsilver.data.mech.Hand
+import io.hsar.coronalsilver.data.mech.Manipulators
+import io.hsar.coronalsilver.data.mech.Mount
+import io.hsar.coronalsilver.data.mech.Weapon
 
 sealed interface StoredManipulators<out T : Manipulators> : StoredComponent<T>
 

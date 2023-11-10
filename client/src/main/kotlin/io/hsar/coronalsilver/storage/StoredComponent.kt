@@ -1,7 +1,7 @@
 package io.hsar.coronalsilver.storage
 
 import com.fasterxml.jackson.annotation.JsonTypeInfo
-import io.hsar.coronalsilver.data.Component
+import io.hsar.coronalsilver.data.mech.Component
 import kotlin.reflect.KClass
 
 @JsonTypeInfo(

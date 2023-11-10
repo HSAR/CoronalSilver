@@ -1,4 +1,4 @@
-package io.hsar.coronalsilver.data
+package io.hsar.coronalsilver.data.mech
 
 import io.hsar.coronalsilver.CompositeConsumer
 import io.hsar.coronalsilver.CompositeProvider
@@ -22,6 +22,8 @@ data class Mech(
 
     override val consumers: List<Consumer> = allComponents.filterIsInstance(Consumer::class.java)
     override val providers: List<Provider> = allComponents.filterIsInstance(Provider::class.java)
+
+    val weapons = manipulators.weapons
 
     fun validate(): Result<Boolean> {
         val intersect = this.provided.keys.intersect(this.consumed.keys)

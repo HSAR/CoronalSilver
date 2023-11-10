@@ -1,9 +1,9 @@
 package io.hsar.coronalsilver.storage
 
-import io.hsar.coronalsilver.data.Actuator
-import io.hsar.coronalsilver.data.Component
-import io.hsar.coronalsilver.data.Frame
-import io.hsar.coronalsilver.data.Mobility
+import io.hsar.coronalsilver.data.mech.Actuator
+import io.hsar.coronalsilver.data.mech.Component
+import io.hsar.coronalsilver.data.mech.Frame
+import io.hsar.coronalsilver.data.mech.Mobility
 
 data class StoredMobility(
     override val name: String,

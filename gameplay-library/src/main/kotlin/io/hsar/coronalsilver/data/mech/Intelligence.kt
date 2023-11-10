@@ -1,4 +1,4 @@
-package io.hsar.coronalsilver.data
+package io.hsar.coronalsilver.data.mech
 
 import io.hsar.coronalsilver.CompositeConsumer
 import io.hsar.coronalsilver.CompositeProvider

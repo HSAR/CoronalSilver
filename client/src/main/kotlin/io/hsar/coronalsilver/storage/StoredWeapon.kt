@@ -1,12 +1,12 @@
 package io.hsar.coronalsilver.storage
 
-import io.hsar.coronalsilver.data.Autoloader
-import io.hsar.coronalsilver.data.Component
-import io.hsar.coronalsilver.data.Effector
-import io.hsar.coronalsilver.data.FormFactor
-import io.hsar.coronalsilver.data.Loading
-import io.hsar.coronalsilver.data.Magazine
-import io.hsar.coronalsilver.data.Weapon
+import io.hsar.coronalsilver.data.mech.Autoloader
+import io.hsar.coronalsilver.data.mech.Component
+import io.hsar.coronalsilver.data.mech.Effector
+import io.hsar.coronalsilver.data.mech.FormFactor
+import io.hsar.coronalsilver.data.mech.Loading
+import io.hsar.coronalsilver.data.mech.Magazine
+import io.hsar.coronalsilver.data.mech.Weapon
 
 data class StoredWeapon(
     override val name: String,

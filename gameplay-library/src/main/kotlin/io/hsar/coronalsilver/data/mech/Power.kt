@@ -1,4 +1,4 @@
-package io.hsar.coronalsilver.data
+package io.hsar.coronalsilver.data.mech
 
 import com.fasterxml.jackson.annotation.JsonTypeInfo
 import io.hsar.coronalsilver.Resource

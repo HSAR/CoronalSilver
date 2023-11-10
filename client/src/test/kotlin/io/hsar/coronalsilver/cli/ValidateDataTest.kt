@@ -1,8 +1,8 @@
 package io.hsar.coronalsilver.cli
 
 import com.fasterxml.jackson.module.kotlin.readValue
-import io.hsar.coronalsilver.data.Component
-import io.hsar.coronalsilver.data.Mech
+import io.hsar.coronalsilver.data.mech.Component
+import io.hsar.coronalsilver.data.mech.Mech
 import io.hsar.coronalsilver.reference.MechRef
 import io.hsar.coronalsilver.storage.StoredComponent
 import org.hamcrest.MatcherAssert.assertThat

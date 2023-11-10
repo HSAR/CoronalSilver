@@ -1,9 +1,9 @@
 package io.hsar.coronalsilver.storage
 
-import io.hsar.coronalsilver.data.Battery
-import io.hsar.coronalsilver.data.Component
-import io.hsar.coronalsilver.data.Power
-import io.hsar.coronalsilver.data.Reactor
+import io.hsar.coronalsilver.data.mech.Battery
+import io.hsar.coronalsilver.data.mech.Component
+import io.hsar.coronalsilver.data.mech.Power
+import io.hsar.coronalsilver.data.mech.Reactor
 
 sealed class StoredPower<out T : Power> : StoredComponent<T>
 

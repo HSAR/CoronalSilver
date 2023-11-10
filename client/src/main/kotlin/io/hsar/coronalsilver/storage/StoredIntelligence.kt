@@ -1,9 +1,9 @@
 package io.hsar.coronalsilver.storage
 
-import io.hsar.coronalsilver.data.Component
-import io.hsar.coronalsilver.data.Intelligence
-import io.hsar.coronalsilver.data.Processor
-import io.hsar.coronalsilver.data.Sensor
+import io.hsar.coronalsilver.data.mech.Component
+import io.hsar.coronalsilver.data.mech.Intelligence
+import io.hsar.coronalsilver.data.mech.Processor
+import io.hsar.coronalsilver.data.mech.Sensor
 
 data class StoredIntelligence(
     override val name: String,

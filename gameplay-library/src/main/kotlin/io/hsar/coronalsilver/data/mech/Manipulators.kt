@@ -1,4 +1,4 @@
-package io.hsar.coronalsilver.data
+package io.hsar.coronalsilver.data.mech
 
 import io.hsar.coronalsilver.CompositeConsumer
 import io.hsar.coronalsilver.CompositeProvider
@@ -7,7 +7,9 @@ import io.hsar.coronalsilver.Provider
 import io.hsar.coronalsilver.Resource
 import io.hsar.coronalsilver.plusWithSummation
 
-sealed interface Manipulators : Component, CompositeConsumer, CompositeProvider
+sealed interface Manipulators : Component, CompositeConsumer, CompositeProvider {
+    val weapons: List<Weapon>
+}
 
 data class ArmPair(
     override val name: String,
@@ -18,6 +20,8 @@ data class ArmPair(
 ) : Manipulators {
     override val consumers: List<Consumer> = listOf(handL, handR)
     override val providers: List<Provider> = listOf(handL, handR)
+
+    override val weapons: List<Weapon> = listOfNotNull(handL.weapon, handR.weapon)
 }
 
 sealed interface Hand : Component {
