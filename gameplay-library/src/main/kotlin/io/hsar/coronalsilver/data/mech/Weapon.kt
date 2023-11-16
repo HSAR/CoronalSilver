@@ -11,13 +11,16 @@ data class Weapon(
     override val name: String,
     override val manufacturer: String? = null,
     override val desc: String? = null,
-    val formFactor: FormFactor, val effector: Effector, val loading: Loading
+    val formFactor: FormFactor, val fireModes: List<FireMode>, val effector: Effector,
+    val loading: Loading
 ) : Component, CompositeConsumer, CompositeProvider {
     override val consumers: List<Consumer> = listOf(effector, loading)
     override val providers: List<Provider> = listOf(loading)
 }
 
 enum class FormFactor { COMPACT, PDW, RIFLE, HEAVY, SHOULDER_FIRED }
+
+enum class FireMode { SINGLE, BURST, AUTO }
 
 @JsonTypeInfo(
     use = JsonTypeInfo.Id.NAME,

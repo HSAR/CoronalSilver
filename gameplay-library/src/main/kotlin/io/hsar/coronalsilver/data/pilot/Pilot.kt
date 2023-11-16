@@ -1,7 +1,12 @@
 package io.hsar.coronalsilver.data.pilot
 
 data class Pilot(
-    val movementSkill: Double,
-    val firingSkill: Double,
-    val nerveSkill: Double,
+    /**
+     * Used for shooting targets.
+     */
+    val accuracy: Int,
+    /**
+     * Used to withstand incoming fire.
+     */
+    val resilience: Int,
 )
