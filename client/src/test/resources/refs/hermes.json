@@ -4,7 +4,49 @@
   "subcomponents": {
     "chassis": {
       "type": "ChassisRef",
-      "name": "Hermes Chassis/Core"
+      "name": "Hermes Chassis/Core",
+      "protection": {
+        "forward": [
+          {
+            "name": "Zeus Halo/Light",
+            "value": 1.0
+          },
+          {
+            "name": "Cerabond Armour/Light",
+            "value": 10.0
+          },
+          {
+            "name": "Ferrobond Armour/Heavy",
+            "value": 25.0
+          }
+        ],
+        "left": [
+          {
+            "name": "Cerabond Armour/Light",
+            "value": 25.0
+          },
+          {
+            "name": "Ferrobond Armour/Heavy",
+            "value": 5.0
+          }
+        ],
+        "right": [
+          {
+            "name": "Cerabond Armour/Light",
+            "value": 30.0
+          },
+          {
+            "name": "Ferrobond Armour/Heavy",
+            "value": 10.0
+          }
+        ],
+        "rear": [
+          {
+            "name": "Cerabond Armour/Light",
+            "value": 40.0
+          }
+        ]
+      }
     },
     "intelligence": {
       "type": "IntelligenceRef",
@@ -59,7 +101,13 @@
               "subcomponents": {
                 "loading": {
                   "type": "LoadingRef",
-                  "name": "Mag 40mm/5rd"
+                  "name": "Mag 40mm/5rd",
+                  "subcomponents": {
+                    "ammo": {
+                      "type": "AmmoRef",
+                      "name": "40mm HEDP"
+                    }
+                  }
                 }
               }
             }

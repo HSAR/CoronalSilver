@@ -5,6 +5,7 @@ import io.hsar.coronalsilver.data.mech.Mech
 import io.hsar.coronalsilver.data.mech.Weapon
 import io.hsar.coronalsilver.data.pilot.Pilot
 import io.hsar.coronalsilver.statistics.AttackResultCalculator
+import io.hsar.coronalsilver.statistics.DefendResultCalculator
 
 class Simulation(var world: World) {
 
@@ -14,9 +15,14 @@ class Simulation(var world: World) {
         weapon: Weapon,
         fireMode: FireMode
     ) {
-        firer.let { (pilot, mech) ->
-            AttackResultCalculator.roll(mech, pilot, weapon, fireMode)
-        }
+        firer
+            .let { (pilot, mech) ->
+                AttackResultCalculator.roll(mech, pilot, weapon, fireMode)
+            }
+            .map { hit ->
+                val (pilot, mech) = target
+                DefendResultCalculator.roll(mech, pilot, hit)
+            }
     }
 }
 

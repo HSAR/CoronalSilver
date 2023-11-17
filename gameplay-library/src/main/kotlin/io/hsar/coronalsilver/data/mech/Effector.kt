@@ -2,6 +2,7 @@ package io.hsar.coronalsilver.data.mech
 
 import com.fasterxml.jackson.annotation.JsonTypeInfo
 import io.hsar.coronalsilver.Consumer
+import io.hsar.coronalsilver.Provider
 import io.hsar.coronalsilver.Resource
 
 /**
@@ -12,11 +13,11 @@ import io.hsar.coronalsilver.Resource
     include = JsonTypeInfo.As.PROPERTY,
     property = "type"
 )
-sealed interface Effector : Consumer {
+sealed interface Effector : Consumer, Provider {
     val mass: Double
     val powerConsumed: Double
     val damageType: DamageType
-    val caliber: String
+    val damage: Double
 
     override val consumed: Map<Resource, Double>
         get() = mapOf(
@@ -28,11 +29,14 @@ sealed interface Effector : Consumer {
 
 enum class DamageType { LASER, KINETIC, PAYLOAD }
 
-class Laser(override val mass: Double, override val powerConsumed: Double, override val caliber: String) : Effector {
+class Laser(override val mass: Double, override val powerConsumed: Double, override val damage: Double) : Effector {
     override val damageType = DamageType.LASER
+
+    override val provided: Map<Resource, Double>
+        get() = mapOf(Resource.ACCURACY to 10.0)
 }
 
-class Kinetic(override val mass: Double, override val caliber: String) : Effector {
+class Kinetic(override val mass: Double, override val damage: Double) : Effector {
     override val damageType: DamageType = DamageType.KINETIC
     override val powerConsumed: Double = 0.0
 }

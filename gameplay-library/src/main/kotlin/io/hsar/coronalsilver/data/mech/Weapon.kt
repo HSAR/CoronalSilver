@@ -1,6 +1,5 @@
 package io.hsar.coronalsilver.data.mech
 
-import com.fasterxml.jackson.annotation.JsonTypeInfo
 import io.hsar.coronalsilver.CompositeConsumer
 import io.hsar.coronalsilver.CompositeProvider
 import io.hsar.coronalsilver.Consumer
@@ -12,7 +11,7 @@ data class Weapon(
     override val manufacturer: String? = null,
     override val desc: String? = null,
     val formFactor: FormFactor, val fireModes: List<FireMode>, val effector: Effector,
-    val loading: Loading
+    val loading: Loading,
 ) : Component, CompositeConsumer, CompositeProvider {
     override val consumers: List<Consumer> = listOf(effector, loading)
     override val providers: List<Provider> = listOf(loading)
@@ -22,15 +21,10 @@ enum class FormFactor { COMPACT, PDW, RIFLE, HEAVY, SHOULDER_FIRED }
 
 enum class FireMode { SINGLE, BURST, AUTO }
 
-@JsonTypeInfo(
-    use = JsonTypeInfo.Id.NAME,
-    include = JsonTypeInfo.As.PROPERTY,
-    property = "type"
-)
 sealed interface Loading : Component {
     val mass: Double
     val powerConsumed: Double
-    val caliber: String
+    val ammo: Ammo
 
     override val consumed: Map<Resource, Double>
         get() = mapOf(Resource.MASS to mass, Resource.POWER to powerConsumed)
@@ -46,8 +40,8 @@ data class Magazine(
     override val name: String,
     override val manufacturer: String? = null,
     override val desc: String? = null,
-    override val caliber: String,
-    override val mass: Double, val capacity: Int, val reloadCost: Double
+    override val mass: Double, val capacity: Int, val reloadCost: Double,
+    override val ammo: Ammo,
 ) : Loading {
     override val powerConsumed: Double = 0.0
 }
@@ -59,6 +53,6 @@ data class Autoloader(
     override val name: String,
     override val manufacturer: String? = null,
     override val desc: String? = null,
-    override val caliber: String,
-    override val mass: Double, override val powerConsumed: Double
+    override val mass: Double, override val powerConsumed: Double,
+    override val ammo: Ammo,
 ) : Loading

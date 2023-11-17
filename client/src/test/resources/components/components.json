@@ -88,10 +88,13 @@
     "name": "40mm/PDW",
     "manufacturer": "Cassandra Developments",
     "formFactor": "PDW",
+    "fireModes": [
+      "BURST",
+      "AUTO"
+    ],
     "effector": {
       "type": "Kinetic",
-      "mass": 50.0,
-      "caliber": 40.0
+      "mass": 50.0
     }
   },
   {
@@ -102,5 +105,34 @@
     "mass": 5.0,
     "capacity": 5,
     "reloadCost": 1.0
+  },
+  {
+    "type": "StoredAmmo",
+    "name": "40mm HEDP",
+    "damage": 1200,
+    "armourPiercing": 0.1
+  },
+  {
+    "type": "StoredEnergyShield",
+    "name": "Zeus Halo/Light",
+    "manufacturer": "Olympus Systems",
+    "mass": 75.0,
+    "powerConsumed": 100.0,
+    "valuePerPower": 4.0,
+    "maxValue": 800.0
+  },
+  {
+    "type": "StoredArmourPlate",
+    "name": "Ferrobond Armour/Heavy",
+    "manufacturer": "Olympus Systems",
+    "deflection": 0.6,
+    "valuePerMass": 20.0
+  },
+  {
+    "type": "StoredArmourPlate",
+    "name": "Cerabond Armour/Light",
+    "manufacturer": "Olympus Systems",
+    "deflection": 0.2,
+    "valuePerMass": 50.0
   }
 ]

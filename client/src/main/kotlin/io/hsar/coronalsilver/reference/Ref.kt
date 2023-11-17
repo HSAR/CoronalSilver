@@ -3,6 +3,7 @@ package io.hsar.coronalsilver.reference
 import com.fasterxml.jackson.annotation.JsonTypeInfo
 import io.hsar.coronalsilver.Named
 import io.hsar.coronalsilver.data.mech.Actuator
+import io.hsar.coronalsilver.data.mech.Ammo
 import io.hsar.coronalsilver.data.mech.Chassis
 import io.hsar.coronalsilver.data.mech.Component
 import io.hsar.coronalsilver.data.mech.Frame
@@ -17,6 +18,7 @@ import io.hsar.coronalsilver.data.mech.Processor
 import io.hsar.coronalsilver.data.mech.Sensor
 import io.hsar.coronalsilver.data.mech.Weapon
 import io.hsar.coronalsilver.storage.StoredActuator
+import io.hsar.coronalsilver.storage.StoredAmmo
 import io.hsar.coronalsilver.storage.StoredChassis
 import io.hsar.coronalsilver.storage.StoredComponent
 import io.hsar.coronalsilver.storage.StoredFrame
@@ -38,12 +40,14 @@ import io.hsar.coronalsilver.storage.StoredWeapon
 )
 sealed class Ref<in S : StoredComponent<C>, out C : Component>(
     open val subcomponents: Map<String, Ref<StoredComponent<Component>, Component>?> = emptyMap(),
-) : Named {
+) : Named, Saved<C> {
     private fun bindSubcomponents(storedComponents: Map<String, StoredComponent<Component>>): Map<String, Component?> =
         subcomponents
             .mapValues { (_, v) -> v?.bind(storedComponents) }
 
-    fun bind(storedComponents: Map<String, StoredComponent<Component>>): C {
+    override fun bind(
+        storedComponents: Map<String, StoredComponent<Component>>,
+    ): C {
         require(storedComponents.containsKey(name)) { "Expected stored components to contain $name but it did not." }
         return (storedComponents[name]!! as S).bind(
             subcomponents = bindSubcomponents(storedComponents)
@@ -53,10 +57,24 @@ sealed class Ref<in S : StoredComponent<C>, out C : Component>(
 
 data class MechRef(
     override val name: String,
-    override val subcomponents: Map<String, Ref<StoredComponent<Component>, Component>?> = emptyMap(),
+    override val subcomponents: Map<String, Ref<StoredComponent<Component>, Component>?>,
 ) : Ref<StoredMech, Mech>()
 
-data class ChassisRef(override val name: String) : Ref<StoredChassis, Chassis>()
+data class ChassisRef(
+    override val name: String,
+    val protection: ProtectionSchemeSaved,
+) : Ref<StoredChassis, Chassis>() {
+    override fun bind(storedComponents: Map<String, StoredComponent<Component>>): Chassis {
+        return (storedComponents[name]!! as StoredChassis).run {
+            Chassis(
+                name = name, manufacturer = manufacturer, desc = desc,
+                mass, signature,
+                protection = protection.bind(storedComponents),
+                otherConsumed, otherProvided
+            )
+        }
+    }
+}
 
 data class IntelligenceRef(
     override val name: String,
@@ -94,3 +112,5 @@ data class WeaponRef(
 ) : Ref<StoredWeapon, Weapon>()
 
 data class LoadingRef(override val name: String) : Ref<StoredLoading, Loading>()
+
+data class AmmoRef(override val name: String) : Ref<StoredAmmo, Ammo>()

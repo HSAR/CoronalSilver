@@ -20,8 +20,8 @@ data class Mech(
 
     private val allComponents = listOfNotNull(chassis, intelligence, power, mobility, manipulators)
 
-    override val consumers: List<Consumer> = allComponents.filterIsInstance(Consumer::class.java)
-    override val providers: List<Provider> = allComponents.filterIsInstance(Provider::class.java)
+    override val consumers: List<Consumer> = allComponents.filter { it.consumed.any() }
+    override val providers: List<Provider> = allComponents.filter { it.provided.any() }
 
     val weapons = manipulators.weapons
 
@@ -47,13 +47,14 @@ data class Mech(
 }
 
 /**
- * The chassis itself may provide or consume certain resources.
+ * Chasses mount armour protection and may provide or consume certain resources.
  */
 data class Chassis(
     override val name: String,
     override val manufacturer: String? = null,
     override val desc: String? = null,
     val mass: Double, val signature: Double,
+    val protection: ProtectionScheme,
     val otherConsumed: Map<Resource, Double> = emptyMap(),
     val otherProvided: Map<Resource, Double> = emptyMap(),
 ) : Component, Consumer, Provider {

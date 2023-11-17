@@ -6,7 +6,83 @@
       "name": "Hermes Chassis/Core",
       "type": "Chassis",
       "mass": 500.0,
-      "signature": 1.0
+      "signature": 1.0,
+      "protection": {
+        "type": "ProtectionScheme",
+        "forward": [
+          {
+            "type": "EnergyShield",
+            "name": "OS Zeus Halo/Light",
+            "valueRemaining": 800,
+            "mass": 75.0,
+            "powerConsumed": 100.0,
+            "valuePerPower": 4.0,
+            "maxValue": 800.0
+          },
+          {
+            "type": "ArmourPlate",
+            "name": "OS Cerabond Armour/Light",
+            "manufacturer": "Olympus Systems",
+            "deflection": 0.2,
+            "valuePerMass": 50.0,
+            "mass": 10.0
+          },
+          {
+            "type": "ArmourPlate",
+            "name": "OS Ferrobond Armour/Heavy",
+            "manufacturer": "Olympus Systems",
+            "deflection": 0.6,
+            "valuePerMass": 20.0,
+            "mass": 25.0
+          }
+        ],
+        "left": [
+          {
+            "type": "ArmourPlate",
+            "name": "OS Cerabond Armour/Light",
+            "manufacturer": "Olympus Systems",
+            "deflection": 0.2,
+            "valuePerMass": 50.0,
+            "mass": 25.0
+          },
+          {
+            "type": "ArmourPlate",
+            "name": "OS Ferrobond Armour/Heavy",
+            "manufacturer": "Olympus Systems",
+            "deflection": 0.6,
+            "valuePerMass": 20.0,
+            "mass": 5.0
+          }
+        ],
+        "right": [
+          {
+            "type": "ArmourPlate",
+            "name": "OS Cerabond Armour/Light",
+            "manufacturer": "Olympus Systems",
+            "deflection": 0.2,
+            "valuePerMass": 50.0,
+            "mass": 30.0
+          },
+          {
+            "type": "ArmourPlate",
+            "name": "OS Ferrobond Armour/Heavy",
+            "manufacturer": "Olympus Systems",
+            "deflection": 0.6,
+            "valuePerMass": 20.0,
+            "mass": 10.0
+          }
+        ],
+        "rear": [
+          {
+            "type": "ArmourPlate",
+            "name": "OS Cerabond Armour/Light",
+            "manufacturer": "Olympus Systems",
+            "deflection": 0.3,
+            "valuePerMass": 9.0,
+            "mass": 40.0
+          }
+        ]
+      }
     },
     "intelligence": {
       "name": "Cranium/Light",
@@ -73,6 +149,10 @@
           "name": "CD 40mm/PDW",
           "type": "Weapon",
           "formFactor": "PDW",
+          "fireModes": [
+            "BURST",
+            "AUTO"
+          ],
           "effector": {
             "type": "Kinetic",
             "mass": 50.0,
@@ -81,10 +161,15 @@
           "loading": {
             "name": "Mag 40mm/5rd",
             "type": "Magazine",
-            "caliber": "40mm",
             "mass": 5.0,
             "capacity": 5,
-            "reloadCost": 1.0
+            "reloadCost": 1.0,
+            "ammo": {
+              "name": "40mm HEDP",
+              "type": "Ammo",
+              "damage": 1300,
+              "armourPiercing": 0.1
+            }
           }
         }
       }

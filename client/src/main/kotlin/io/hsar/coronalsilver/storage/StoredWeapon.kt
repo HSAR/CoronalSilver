@@ -1,5 +1,6 @@
 package io.hsar.coronalsilver.storage
 
+import io.hsar.coronalsilver.data.mech.Ammo
 import io.hsar.coronalsilver.data.mech.Autoloader
 import io.hsar.coronalsilver.data.mech.Component
 import io.hsar.coronalsilver.data.mech.Effector
@@ -28,12 +29,12 @@ data class StoredMagazine(
     override val name: String,
     override val manufacturer: String? = null,
     override val desc: String? = null,
-    val caliber: String,
     val mass: Double, val capacity: Int, val reloadCost: Double
 ) : StoredComponent<Magazine> {
     override fun bind(subcomponents: Map<String, Component?>) = Magazine(
         name = name, manufacturer = manufacturer, desc = desc,
-        caliber, mass, capacity, reloadCost
+        mass, capacity, reloadCost,
+        ammo = subcomponents["ammo"] as Ammo
     )
 }
 
@@ -41,11 +42,24 @@ data class StoredAutoloader(
     override val name: String,
     override val manufacturer: String? = null,
     override val desc: String? = null,
-    val caliber: String,
     val mass: Double, val powerConsumed: Double
 ) : StoredComponent<Autoloader> {
     override fun bind(subcomponents: Map<String, Component?>) = Autoloader(
         name = name, manufacturer = manufacturer, desc = desc,
-        caliber, mass, powerConsumed,
+        mass, powerConsumed,
+        ammo = subcomponents["ammo"] as Ammo
+    )
+}
+
+data class StoredAmmo(
+    override val name: String,
+    override val manufacturer: String? = null,
+    override val desc: String? = null,
+    val damage: Double,
+    val armourPiercing: Double,
+) : StoredComponent<Ammo> {
+    override fun bind(subcomponents: Map<String, Component?>) = Ammo(
+        name = name, manufacturer = manufacturer, desc = desc,
+        damage, armourPiercing
     )
 }

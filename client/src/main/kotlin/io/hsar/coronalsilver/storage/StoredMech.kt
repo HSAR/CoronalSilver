@@ -8,6 +8,7 @@ import io.hsar.coronalsilver.data.mech.Manipulators
 import io.hsar.coronalsilver.data.mech.Mech
 import io.hsar.coronalsilver.data.mech.Mobility
 import io.hsar.coronalsilver.data.mech.Power
+import io.hsar.coronalsilver.data.mech.ProtectionScheme
 
 data class StoredMech(
     override val name: String,
@@ -34,6 +35,8 @@ data class StoredChassis(
 ) : StoredComponent<Chassis> {
     override fun bind(subcomponents: Map<String, Component?>) = Chassis(
         name = name, manufacturer = manufacturer, desc = desc,
-        mass, signature, otherConsumed, otherProvided
+        mass, signature,
+        protection = subcomponents["protection"] as ProtectionScheme,
+        otherConsumed, otherProvided
     )
 }

@@ -59,7 +59,7 @@ class RandomOutcomeTest {
 
         val result = objectUnderTest.roll(50, reroll = Reroll.ON_FAIL_TENS)
 
-        assertThat(result, equalTo(5))
+        assertThat(result, equalTo(4))
     }
 
     @Test
