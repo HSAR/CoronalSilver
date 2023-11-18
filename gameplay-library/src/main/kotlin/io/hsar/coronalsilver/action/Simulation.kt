@@ -15,17 +15,28 @@ class Simulation(var world: World) {
         weapon: Weapon,
         fireMode: FireMode
     ) {
-        firer
+        val (targetPilot, targetMech) = target
+
+        val (effectedTarget, targetVector) = firer
             .let { (pilot, mech) ->
                 AttackResultCalculator.roll(mech, pilot, weapon, fireMode)
             }
-            .map { hit ->
-                val (pilot, mech) = target
-                DefendResultCalculator.roll(mech, pilot, hit)
+            .fold(targetMech to world.positions[target]!!) { targetState, hit ->
+                val (effectedTargetMech, currentVector) = targetState
+                DefendResultCalculator.roll(world.positions[firer]!!, effectedTargetMech, targetPilot, currentVector, hit)
             }
+
+        if (effectedTarget != targetMech) {
+            val updatedPositions = world.positions
+                .also { positions ->
+                    val position = positions[target]
+                    positions + mapOf((target.first to effectedTarget) to position)
+                }
+            world = world.copy(positions = updatedPositions)
+        }
     }
 }
 
-class World {
-    val positions: Map<Pair<Pilot, Mech>, Pair<Int, Int>> = emptyMap()
-}
+data class World(val positions: Map<Pair<Pilot, Mech>, Vector> = emptyMap())
+
+data class Vector(val xPos: Double, val yPos: Double, val zPos: Double, val bearing: Double)

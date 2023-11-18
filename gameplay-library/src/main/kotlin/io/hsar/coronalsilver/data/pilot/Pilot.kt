@@ -6,7 +6,7 @@ data class Pilot(
      */
     val accuracy: Int,
     /**
-     * Used to withstand incoming fire.
+     * Used for defensive and reactive maneuvers.
      */
-    val resilience: Int,
+    val reflexes: Int,
 )
