@@ -3,6 +3,7 @@ package io.hsar.coronalsilver.data.mech
 import io.hsar.coronalsilver.CompositeConsumer
 import io.hsar.coronalsilver.Consumer
 import io.hsar.coronalsilver.Resource
+import io.hsar.coronalsilver.action.Quadrant
 
 data class ProtectionScheme(
     val forward: List<ProtectionLayer>,
@@ -15,6 +16,9 @@ data class ProtectionScheme(
     override val desc: String? = null
 
     override val consumers: List<Consumer> = listOf(forward, left, right, rear).flatten()
+
+    fun toQuadrantMap() = listOf(Quadrant.FRONT to this.forward, Quadrant.RIGHT to this.right, Quadrant.REAR to this.rear, Quadrant.LEFT to this.left)
+        .toMap()
 }
 
 /**
@@ -23,6 +27,11 @@ data class ProtectionScheme(
 sealed interface ProtectionLayer : Component {
     val valueRemaining: Double
     val deflection: Double
+
+    /**
+     * @return Pair where first element is the resulting protection, null if destroyed, and second is remaining damage to pass to next protection layer.
+     */
+    fun applyDamage(damageValue: Double): Pair<ProtectionLayer?, Double>
 }
 
 /**
@@ -44,6 +53,14 @@ data class ArmourPlate(
     override val consumed = mapOf(
         Resource.MASS to mass,
     )
+
+    override fun applyDamage(damageValue: Double) =
+        if (this.valueRemaining >= damageValue) {
+            val massToReduce = damageValue / valuePerMass
+            this.copy(mass = this.mass - massToReduce) to 0.0
+        } else {
+            null to damageValue - valueRemaining
+        }
 }
 
 /**
@@ -67,4 +84,11 @@ data class EnergyShield(
         Resource.POWER to powerConsumed,
         Resource.MASS to mass,
     )
+
+    override fun applyDamage(damageValue: Double) =
+        if (this.valueRemaining >= damageValue) {
+            this.copy(valueRemaining = this.valueRemaining - damageValue) to 0.0
+        } else {
+            this.copy(valueRemaining = 0.0) to damageValue - valueRemaining
+        }
 }

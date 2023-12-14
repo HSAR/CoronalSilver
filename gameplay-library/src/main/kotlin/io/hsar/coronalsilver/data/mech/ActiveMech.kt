@@ -5,9 +5,18 @@ import io.hsar.coronalsilver.CompositeProvider
 import io.hsar.coronalsilver.Consumer
 import io.hsar.coronalsilver.Provider
 import io.hsar.coronalsilver.Resource
+import io.hsar.coronalsilver.action.Quadrant
 import io.hsar.coronalsilver.plusWithSummation
 
-data class Mech(
+sealed interface Mech
+
+data class DestroyedMech(
+    val name: String,
+    val manufacturer: String? = null,
+    val desc: String? = null,
+) : Mech
+
+data class ActiveMech(
     override val name: String,
     override val manufacturer: String? = null,
     override val desc: String? = null,
@@ -16,7 +25,7 @@ data class Mech(
     val power: Power,
     val mobility: Mobility,
     val manipulators: Manipulators,
-) : Component, CompositeConsumer, CompositeProvider {
+) : Mech, Component, CompositeConsumer, CompositeProvider {
 
     private val allComponents = listOfNotNull(chassis, intelligence, power, mobility, manipulators)
 
@@ -54,13 +63,17 @@ data class Chassis(
     override val manufacturer: String? = null,
     override val desc: String? = null,
     val mass: Double, val signature: Double,
-    val protection: ProtectionScheme,
+    val protection: Map<Quadrant, List<ProtectionLayer>>,
     val otherConsumed: Map<Resource, Double> = emptyMap(),
     val otherProvided: Map<Resource, Double> = emptyMap(),
-) : Component, Consumer, Provider {
-    override val consumed = mapOf(
-        Resource.MASS to mass,
-    ).plusWithSummation(otherConsumed)
+) : Component {
+
+    override val consumed = protection.values.flatten()
+        .fold(emptyMap<Resource, Double>()) { acc, curr -> acc.plusWithSummation(curr.consumed) }
+        .plusWithSummation(
+            mapOf(Resource.MASS to mass)
+        )
+        .plusWithSummation(otherConsumed)
 
     override val provided = mapOf(
         Resource.SIGNATURE to signature

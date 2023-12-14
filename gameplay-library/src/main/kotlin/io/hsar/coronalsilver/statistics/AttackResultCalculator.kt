@@ -1,13 +1,13 @@
 package io.hsar.coronalsilver.statistics
 
+import io.hsar.coronalsilver.data.mech.ActiveMech
 import io.hsar.coronalsilver.data.mech.FireMode
-import io.hsar.coronalsilver.data.mech.Mech
 import io.hsar.coronalsilver.data.mech.Weapon
 import io.hsar.coronalsilver.data.pilot.Pilot
 import kotlin.math.min
 
 object AttackResultCalculator {
-    fun roll(attackingMech: Mech, pilot: Pilot, weapon: Weapon, fireMode: FireMode) = StatCalculator.hitChance(attackingMech, pilot, fireMode)
+    fun roll(attackingMech: ActiveMech, pilot: Pilot, weapon: Weapon, fireMode: FireMode) = StatCalculator.hitChance(attackingMech, pilot, fireMode)
         .let { targetNumber ->
             roll(targetNumber)
         }

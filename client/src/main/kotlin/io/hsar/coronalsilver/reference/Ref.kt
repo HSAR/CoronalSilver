@@ -2,6 +2,7 @@ package io.hsar.coronalsilver.reference
 
 import com.fasterxml.jackson.annotation.JsonTypeInfo
 import io.hsar.coronalsilver.Named
+import io.hsar.coronalsilver.data.mech.ActiveMech
 import io.hsar.coronalsilver.data.mech.Actuator
 import io.hsar.coronalsilver.data.mech.Ammo
 import io.hsar.coronalsilver.data.mech.Chassis
@@ -11,7 +12,6 @@ import io.hsar.coronalsilver.data.mech.Hand
 import io.hsar.coronalsilver.data.mech.Intelligence
 import io.hsar.coronalsilver.data.mech.Loading
 import io.hsar.coronalsilver.data.mech.Manipulators
-import io.hsar.coronalsilver.data.mech.Mech
 import io.hsar.coronalsilver.data.mech.Mobility
 import io.hsar.coronalsilver.data.mech.Power
 import io.hsar.coronalsilver.data.mech.Processor
@@ -58,7 +58,7 @@ sealed class Ref<in S : StoredComponent<C>, out C : Component>(
 data class MechRef(
     override val name: String,
     override val subcomponents: Map<String, Ref<StoredComponent<Component>, Component>?>,
-) : Ref<StoredMech, Mech>()
+) : Ref<StoredMech, ActiveMech>()
 
 data class ChassisRef(
     override val name: String,
@@ -69,7 +69,7 @@ data class ChassisRef(
             Chassis(
                 name = name, manufacturer = manufacturer, desc = desc,
                 mass, signature,
-                protection = protection.bind(storedComponents),
+                protection = protection.bind(storedComponents).toQuadrantMap(),
                 otherConsumed, otherProvided
             )
         }

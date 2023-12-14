@@ -8,7 +8,7 @@ import com.fasterxml.jackson.databind.DeserializationFeature
 import com.fasterxml.jackson.databind.SerializationFeature
 import com.fasterxml.jackson.module.kotlin.jacksonObjectMapper
 import com.fasterxml.jackson.module.kotlin.readValue
-import io.hsar.coronalsilver.data.mech.Mech
+import io.hsar.coronalsilver.data.mech.ActiveMech
 import java.io.File
 import kotlin.system.exitProcess
 
@@ -36,7 +36,7 @@ class CommandLineInterface : Command("validate") {
             }
         }
             .map { filePath ->
-                OBJECT_MAPPER.readValue<List<Mech>>(filePath.readText())
+                OBJECT_MAPPER.readValue<List<ActiveMech>>(filePath.readText())
             }
     }
 }

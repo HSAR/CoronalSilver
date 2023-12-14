@@ -54,6 +54,8 @@ class VectorCalculatorTest {
     @Test
     fun `octants work`() {
         assertThat(0.0.toOctant(), equalTo(Octant.FRONT))
+        assertThat(22.49.toOctant(), equalTo(Octant.FRONT))
+        assertThat(22.50.toOctant(), equalTo(Octant.FRONT_R))
     }
 
     fun setOrigin(x: Double, y: Double) {

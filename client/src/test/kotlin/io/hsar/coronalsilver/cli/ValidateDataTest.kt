@@ -1,8 +1,8 @@
 package io.hsar.coronalsilver.cli
 
 import com.fasterxml.jackson.module.kotlin.readValue
+import io.hsar.coronalsilver.data.mech.ActiveMech
 import io.hsar.coronalsilver.data.mech.Component
-import io.hsar.coronalsilver.data.mech.Mech
 import io.hsar.coronalsilver.reference.MechRef
 import io.hsar.coronalsilver.storage.StoredComponent
 import org.hamcrest.MatcherAssert.assertThat
@@ -13,7 +13,7 @@ class ValidateDataTest {
     @Test
     fun `full mech parses and validates correctly`() {
         resource("complete/chassis.json")
-            .let { OBJECT_MAPPER.readValue<Map<String, Mech>>(it) }
+            .let { OBJECT_MAPPER.readValue<Map<String, ActiveMech>>(it) }
             .map { (_, mech) -> mech.validate() }
             .map { assertThat("Validated correctly", it.isSuccess) }
     }

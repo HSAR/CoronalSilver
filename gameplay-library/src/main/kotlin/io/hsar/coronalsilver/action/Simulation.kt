@@ -1,5 +1,6 @@
 package io.hsar.coronalsilver.action
 
+import io.hsar.coronalsilver.data.mech.ActiveMech
 import io.hsar.coronalsilver.data.mech.FireMode
 import io.hsar.coronalsilver.data.mech.Mech
 import io.hsar.coronalsilver.data.mech.Weapon
@@ -10,8 +11,8 @@ import io.hsar.coronalsilver.statistics.DefendResultCalculator
 class Simulation(var world: World) {
 
     fun fireWeapon(
-        target: Pair<Pilot, Mech>,
-        firer: Pair<Pilot, Mech>,
+        target: Pair<Pilot, ActiveMech>,
+        firer: Pair<Pilot, ActiveMech>,
         weapon: Weapon,
         fireMode: FireMode
     ) {
@@ -21,7 +22,7 @@ class Simulation(var world: World) {
             .let { (pilot, mech) ->
                 AttackResultCalculator.roll(mech, pilot, weapon, fireMode)
             }
-            .fold(targetMech to world.positions[target]!!) { targetState, hit ->
+            .fold((targetMech as Mech) to world.positions[target]!!) { targetState, hit ->
                 val (effectedTargetMech, currentVector) = targetState
                 DefendResultCalculator.roll(world.positions[firer]!!, effectedTargetMech, targetPilot, currentVector, hit)
             }
@@ -37,6 +38,6 @@ class Simulation(var world: World) {
     }
 }
 
-data class World(val positions: Map<Pair<Pilot, Mech>, Vector> = emptyMap())
+data class World(val positions: Map<Pair<Pilot, ActiveMech>, Vector> = emptyMap())
 
 data class Vector(val xPos: Double, val yPos: Double, val zPos: Double, val bearing: Double)

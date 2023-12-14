@@ -32,6 +32,8 @@ class RandomOutcome(private val generator: NumberGenerator = RandomNumberGenerat
     }
 }
 
+fun roll(targetNumber: Double, reroll: Reroll = NONE) = roll(targetNumber.toInt(), reroll)
+
 fun roll(targetNumber: Int, reroll: Reroll = NONE) = RandomOutcome.Default.roll(targetNumber, reroll)
 
 interface NumberGenerator {
