@@ -11,27 +11,27 @@ import io.hsar.coronalsilver.statistics.DefendResultCalculator
 class Simulation(var world: World) {
 
     fun fireWeapon(
-        target: Pair<Pilot, ActiveMech>,
-        firer: Pair<Pilot, ActiveMech>,
+        attacker: Pair<Pilot, ActiveMech>,
+        defender: Pair<Pilot, ActiveMech>,
         weapon: Weapon,
         fireMode: FireMode
     ) {
-        val (targetPilot, targetMech) = target
+        val (targetPilot, targetMech) = defender
 
-        val (effectedTarget, targetVector) = firer
+        val (effectedTarget, targetVector) = attacker
             .let { (pilot, mech) ->
                 AttackResultCalculator.roll(mech, pilot, weapon, fireMode)
             }
-            .fold((targetMech as Mech) to world.positions[target]!!) { targetState, hit ->
+            .fold((targetMech as Mech) to world.positions[defender]!!) { targetState, hit ->
                 val (effectedTargetMech, currentVector) = targetState
-                DefendResultCalculator.roll(world.positions[firer]!!, effectedTargetMech, targetPilot, currentVector, hit)
+                DefendResultCalculator.roll(world.positions[attacker]!!, effectedTargetMech, targetPilot, currentVector, hit)
             }
 
         if (effectedTarget != targetMech) {
             val updatedPositions = world.positions
                 .also { positions ->
-                    val position = positions[target]
-                    positions + mapOf((target.first to effectedTarget) to position)
+                    val position = positions[defender]
+                    positions + mapOf((defender.first to effectedTarget) to position)
                 }
             world = world.copy(positions = updatedPositions)
         }

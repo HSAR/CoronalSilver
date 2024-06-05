@@ -16,7 +16,7 @@ object StatCalculator {
             BURST -> 1.0 to -10
             AUTO -> 0.9 to -20
         }.let { (multiplier, constant) ->
-            val baseHitChance = pilot.accuracy + (mech.provided[Resource.ACCURACY]?.toInt() ?: 0)
+            val baseHitChance = pilot.accuracy + (mech.provided[Resource.ACCURACY] ?: 0.0)
             (baseHitChance * multiplier) + constant
         }.toInt()
     }

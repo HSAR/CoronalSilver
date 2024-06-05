@@ -8,7 +8,7 @@
     "type": "StoredChassis",
     "name": "Hermes Chassis/Core",
     "manufacturer": "Olympus Systems",
-    "mass": 500.0,
+    "mass": 300.0,
     "signature": 1.0
   },
   {
@@ -51,7 +51,7 @@
     "type": "StoredFrame",
     "name": "Sprinter",
     "manufacturer": "Olympus Systems",
-    "maxMass": 750.0,
+    "maxMass": 1000.0,
     "maxAcceleration": 50.0,
     "maxVelocity": 100.0
   },

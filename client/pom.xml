@@ -19,11 +19,11 @@
             <artifactId>gameplay-library</artifactId>
         </dependency>
 
-        <dependency>
-            <groupId>com.soywiz.korlibs.korge.plugins</groupId>
-            <artifactId>korge-gradle-plugin</artifactId>
-            <version>5.0.5</version>
-        </dependency>
+        <!--        <dependency>-->
+        <!--            <groupId>com.soywiz.korlibs.korge.plugins</groupId>-->
+        <!--            <artifactId>korge-gradle-plugin</artifactId>-->
+        <!--            <version>5.0.5</version>-->
+        <!--        </dependency>-->
 
         <dependency>
             <groupId>org.jetbrains.kotlin</groupId>

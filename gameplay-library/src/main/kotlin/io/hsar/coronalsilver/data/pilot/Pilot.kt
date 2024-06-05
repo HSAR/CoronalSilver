@@ -2,11 +2,11 @@ package io.hsar.coronalsilver.data.pilot
 
 data class Pilot(
     /**
-     * Used for shooting targets.
+     * Used for shooting targets. Ranges from 0-1.
      */
-    val accuracy: Int,
+    val accuracy: Double,
     /**
-     * Used for defensive and reactive maneuvers.
+     * Used for defensive and reactive maneuvers. Ranges from 0-1.
      */
-    val reflexes: Int,
+    val reflexes: Double,
 )

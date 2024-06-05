@@ -16,7 +16,7 @@ abstract class Command(val name: String) {
     abstract fun run()
 }
 
-class CommandLineInterface : Command("validate") {
+class ValidateCommand : Command("validate") {
 
     @Parameter(
         names = ["--data"],
@@ -49,7 +49,7 @@ val OBJECT_MAPPER = jacksonObjectMapper()
 
 fun main(args: Array<String>) {
     val instances: Map<String, Command> = listOf(
-        CommandLineInterface()
+        ValidateCommand()
     )
         .associateBy { it.name }
     val commander = JCommander()

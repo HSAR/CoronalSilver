@@ -1,5 +1,6 @@
 package io.hsar.coronalsilver.data.mech
 
+import com.fasterxml.jackson.annotation.JsonTypeInfo
 import io.hsar.coronalsilver.CompositeConsumer
 import io.hsar.coronalsilver.Consumer
 import io.hsar.coronalsilver.Resource
@@ -24,6 +25,11 @@ data class ProtectionScheme(
 /**
  * @param deflection - base probability to deflect
  */
+@JsonTypeInfo(
+    use = JsonTypeInfo.Id.NAME,
+    include = JsonTypeInfo.As.PROPERTY,
+    property = "type"
+)
 sealed interface ProtectionLayer : Component {
     val valueRemaining: Double
     val deflection: Double

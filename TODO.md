@@ -2,6 +2,7 @@
 
 ### System
 
+* Weapons have range brackets for damage
 * Variable burst sizes per weapon?
 
 ### Mechs
